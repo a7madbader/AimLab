@@ -1,0 +1,47 @@
+name: Build Windows installer
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-build.txt
+      - name: Run automated tests
+        run: python -m unittest discover -s tests -t . -v
+        env:
+          QT_QPA_PLATFORM: offscreen
+      - name: Build the application (.exe)
+        run: pyinstaller packaging/AimLabPro.spec --noconfirm
+      - name: Launch the REAL packaged .exe in self-test mode
+        shell: pwsh
+        run: |
+          $env:QT_QPA_PLATFORM = "offscreen"
+          $env:AIMLAB_DATA_DIR = "$env:RUNNER_TEMP\aimlab_selftest"
+          $p = Start-Process -FilePath "dist\AimLabPro\AimLabPro.exe" -ArgumentList "--selftest" -Wait -PassThru
+          Write-Host "Exit code: $($p.ExitCode)"
+          Get-Content "$env:AIMLAB_DATA_DIR\logs\aimlab.log" -ErrorAction SilentlyContinue
+          if ($p.ExitCode -ne 0) { throw "Packaged exe self-test FAILED" }
+      - name: Build installer (Inno Setup)
+        run: |
+          choco install innosetup -y --no-progress
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" packaging\installer.iss
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: AimLabPro-Windows-Installer
+          path: installer_output/*.exe
+      - name: Upload portable build
+        uses: actions/upload-artifact@v4
+        with:
+          name: AimLabPro-Portable
+          path: dist/AimLabPro/
