@@ -1,0 +1,50 @@
+{
+  "app": {"title": "AIMLAB PRO", "tagline": "Mouse sensitivity analysis & aim performance lab"},
+  "nav": {
+    "dashboard": "Dashboard", "sensitivity": "Sensitivity Testing", "calibration": "Mouse Calibration",
+    "analysis": "Aim Analysis", "ai": "AI Recommendations", "training": "Training Center",
+    "games": "Game Profiles", "history": "Performance History", "reports": "Reports", "settings": "Settings"
+  },
+  "pages": {
+    "dashboard": {"desc": "Your overview: active profile, calibration status and recent progress."},
+    "sensitivity": {"desc": "Flick, tracking, precision and other tests that measure how well a sensitivity suits you."},
+    "calibration": {"desc": "Measure your real mouse DPI, polling rate and detect pointer acceleration."},
+    "analysis": {"desc": "Detailed analysis of overshoot, undershoot, reaction time, smoothness and consistency."},
+    "ai": {"desc": "Data-driven sensitivity recommendations with a confidence score and clear explanations."},
+    "training": {"desc": "Drills and warm-up routines with progressive difficulty and feedback."},
+    "games": {"desc": "Convert and manage sensitivity for supported FPS games."},
+    "history": {"desc": "Daily, weekly and monthly charts and before-and-after comparisons."},
+    "reports": {"desc": "Export detailed reports as PDF or CSV in English or Arabic."},
+    "settings": {"desc": "Language, user profiles and application preferences."}
+  },
+  "common": {
+    "coming_in_phase": "This page will be built in Phase {phase}.",
+    "planned": "Planned feature"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {name}",
+    "profile": "Active profile",
+    "database": "Local database",
+    "database_ok": "Ready",
+    "calibration": "Mouse calibration",
+    "not_calibrated": "Not calibrated yet",
+    "tests": "Tests completed",
+    "phase": "Development phase",
+    "phase_value": "Phase 1 - Foundation"
+  },
+  "settings": {
+    "language_label": "Interface language",
+    "language_hint": "Changes apply instantly.",
+    "english": "English",
+    "arabic": "العربية",
+    "profiles": "User profiles",
+    "new_profile": "New profile name",
+    "add_profile": "Add profile",
+    "use_profile": "Use selected profile",
+    "active_marker": "(active)",
+    "err_empty": "Please enter a name.",
+    "err_duplicate": "A profile with this name already exists.",
+    "added": "Profile \"{name}\" added.",
+    "switched": "Now using profile \"{name}\"."
+  }
+}
