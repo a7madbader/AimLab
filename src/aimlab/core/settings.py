@@ -33,3 +33,22 @@ class Settings:
         if not self.db.get_user(uid):
             raise ValueError("unknown user")
         self.db.set_setting("active_user_id", uid)
+
+    @property
+    def active_mouse_profile_id(self):
+        """Active mouse profile of the active user, or None."""
+        uid = self.active_user_id
+        v = self.db.get_setting(f"active_mouse_profile:{uid}", "")
+        if v:
+            prof = self.db.get_mouse_profile(int(v))
+            if prof and prof["user_id"] == uid:
+                return prof["id"]
+        return None
+
+    @active_mouse_profile_id.setter
+    def active_mouse_profile_id(self, profile_id):
+        uid = self.active_user_id
+        prof = self.db.get_mouse_profile(profile_id)
+        if not prof or prof["user_id"] != uid:
+            raise ValueError("unknown mouse profile")
+        self.db.set_setting(f"active_mouse_profile:{uid}", profile_id)

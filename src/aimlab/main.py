@@ -33,6 +33,15 @@ def run_selftest(app, ctx) -> int:
         ctx.tr.set_language(lang)
         win.apply_language()
         app.processEvents()
+    # Informational only (never fails the self-test): can raw mouse capture start in this build?
+    try:
+        from .mouse.capture import create_capture
+        cap = create_capture()
+        cap.start()
+        cap.stop()
+        log.info("SELFTEST raw input capture: start/stop OK (available=%s)", cap.available)
+    except Exception as e:
+        log.warning("SELFTEST raw input capture not available here: %s", e)
     log.info("SELFTEST PASSED (v%s)", __version__)
     win.close()
     return 0

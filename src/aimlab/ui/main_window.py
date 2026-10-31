@@ -8,13 +8,14 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel, QListW
 from .. import __version__
 from ..core import paths
 from ..core.context import AppContext
+from .calibration_page import CalibrationPage
 from .pages import BasePage, DashboardPage, SettingsPage
 from .theme import stylesheet
 
 log = logging.getLogger("aimlab.ui")
 
 # (key, phase in which the real page is built; None = already implemented)
-NAV = [("dashboard", None), ("sensitivity", 3), ("calibration", 2), ("analysis", 4),
+NAV = [("dashboard", None), ("sensitivity", 3), ("calibration", None), ("analysis", 4),
        ("ai", 5), ("training", 7), ("games", 6), ("history", 8), ("reports", 8),
        ("settings", None)]
 
@@ -57,6 +58,8 @@ class MainWindow(QMainWindow):
         for key, phase in NAV:
             if key == "dashboard":
                 page = DashboardPage(ctx, key)
+            elif key == "calibration":
+                page = CalibrationPage(ctx, self.apply_language)
             elif key == "settings":
                 page = SettingsPage(ctx, self.apply_language)
             else:

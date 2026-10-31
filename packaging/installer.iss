@@ -1,6 +1,6 @@
 ; Inno Setup script: wraps dist\AimLabPro into a normal Windows installer with a desktop shortcut.
 #define AppName "AIMLAB PRO"
-#define AppVersion "0.1.0"
+#define AppVersion "0.2.0"
 
 [Setup]
 AppId={{B7E1B1F4-6C1A-4D7B-9C55-A1B2C3D40001}

@@ -7,6 +7,8 @@ from ..core.context import AppContext
 
 
 class BasePage(QWidget):
+    add_stretch = True
+
     def __init__(self, ctx: AppContext, key: str, planned_phase=None):
         super().__init__()
         self.ctx, self.key, self.planned_phase = ctx, key, planned_phase
@@ -28,7 +30,8 @@ class BasePage(QWidget):
             self.planned.setWordWrap(True)
             self.layout_.addWidget(self.planned)
         self.build()
-        self.layout_.addStretch(1)
+        if self.add_stretch:
+            self.layout_.addStretch(1)
 
     def build(self):
         """Subclasses add their own widgets here."""
@@ -71,8 +74,12 @@ class DashboardPage(BasePage):
         user = self.ctx.db.get_user(self.ctx.settings.active_user_id)
         name = user["name"] if user else "-"
         self.title.setText(t("dashboard.welcome", name=name))
+        mp_id = self.ctx.settings.active_mouse_profile_id
+        mp = self.ctx.db.get_mouse_profile(mp_id) if mp_id else None
+        calib = (t("dashboard.calibration_value", name=mp["name"], dpi=f"{mp['dpi']:g}")
+                 if mp else t("dashboard.not_calibrated"))
         values = {"profile": name, "database": t("dashboard.database_ok"),
-                  "calibration": t("dashboard.not_calibrated"), "tests": "0",
+                  "calibration": calib, "tests": "0",
                   "phase": t("dashboard.phase_value")}
         for k, card in self.cards.items():
             card.title.setText(t(f"dashboard.{k}"))

@@ -41,3 +41,20 @@ class I18nTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CalibrationTextTests(unittest.TestCase):
+    def test_every_tool_has_all_educational_sections_in_both_languages(self):
+        sections = ("what", "why", "measures", "how", "results", "improve", "limits")
+        for lang in ("en", "ar"):
+            strings = load_locale(lang)
+            for tool in ("settings", "polling", "dpi", "accel", "smooth", "calc"):
+                for s in sections:
+                    self.assertTrue(strings.get(f"calib.{tool}.{s}", "").strip(), f"{lang} calib.{tool}.{s}")
+            for s in sections:
+                self.assertIn(f"calib.h.{s}", strings)
+
+    def test_arabic_text_is_actually_arabic(self):
+        ar = load_locale("ar")
+        for key in ("calib.polling.what", "calib.dpi.how", "calib.accel.limits", "nav.calibration"):
+            self.assertTrue(any("\u0600" <= ch <= "\u06FF" for ch in ar[key]), key)

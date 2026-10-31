@@ -1,21 +1,51 @@
 {
-  "app": {"title": "AIMLAB PRO", "tagline": "Mouse sensitivity analysis & aim performance lab"},
+  "app": {
+    "title": "AIMLAB PRO",
+    "tagline": "Mouse sensitivity analysis & aim performance lab"
+  },
   "nav": {
-    "dashboard": "Dashboard", "sensitivity": "Sensitivity Testing", "calibration": "Mouse Calibration",
-    "analysis": "Aim Analysis", "ai": "AI Recommendations", "training": "Training Center",
-    "games": "Game Profiles", "history": "Performance History", "reports": "Reports", "settings": "Settings"
+    "dashboard": "Dashboard",
+    "sensitivity": "Sensitivity Testing",
+    "calibration": "Mouse Calibration",
+    "analysis": "Aim Analysis",
+    "ai": "AI Recommendations",
+    "training": "Training Center",
+    "games": "Game Profiles",
+    "history": "Performance History",
+    "reports": "Reports",
+    "settings": "Settings"
   },
   "pages": {
-    "dashboard": {"desc": "Your overview: active profile, calibration status and recent progress."},
-    "sensitivity": {"desc": "Flick, tracking, precision and other tests that measure how well a sensitivity suits you."},
-    "calibration": {"desc": "Measure your real mouse DPI, polling rate and detect pointer acceleration."},
-    "analysis": {"desc": "Detailed analysis of overshoot, undershoot, reaction time, smoothness and consistency."},
-    "ai": {"desc": "Data-driven sensitivity recommendations with a confidence score and clear explanations."},
-    "training": {"desc": "Drills and warm-up routines with progressive difficulty and feedback."},
-    "games": {"desc": "Convert and manage sensitivity for supported FPS games."},
-    "history": {"desc": "Daily, weekly and monthly charts and before-and-after comparisons."},
-    "reports": {"desc": "Export detailed reports as PDF or CSV in English or Arabic."},
-    "settings": {"desc": "Language, user profiles and application preferences."}
+    "dashboard": {
+      "desc": "Your overview: active profile, calibration status and recent progress."
+    },
+    "sensitivity": {
+      "desc": "Flick, tracking, precision and other tests that measure how well a sensitivity suits you."
+    },
+    "calibration": {
+      "desc": "Measure your real mouse DPI, polling rate and detect pointer acceleration."
+    },
+    "analysis": {
+      "desc": "Detailed analysis of overshoot, undershoot, reaction time, smoothness and consistency."
+    },
+    "ai": {
+      "desc": "Data-driven sensitivity recommendations with a confidence score and clear explanations."
+    },
+    "training": {
+      "desc": "Drills and warm-up routines with progressive difficulty and feedback."
+    },
+    "games": {
+      "desc": "Convert and manage sensitivity for supported FPS games."
+    },
+    "history": {
+      "desc": "Daily, weekly and monthly charts and before-and-after comparisons."
+    },
+    "reports": {
+      "desc": "Export detailed reports as PDF or CSV in English or Arabic."
+    },
+    "settings": {
+      "desc": "Language, user profiles and application preferences."
+    }
   },
   "common": {
     "coming_in_phase": "This page will be built in Phase {phase}.",
@@ -30,7 +60,8 @@
     "not_calibrated": "Not calibrated yet",
     "tests": "Tests completed",
     "phase": "Development phase",
-    "phase_value": "Phase 1 - Foundation"
+    "phase_value": "Phase 2 - Mouse calibration",
+    "calibration_value": "{name} - {dpi} DPI"
   },
   "settings": {
     "language_label": "Interface language",
@@ -46,5 +77,157 @@
     "err_duplicate": "A profile with this name already exists.",
     "added": "Profile \"{name}\" added.",
     "switched": "Now using profile \"{name}\"."
+  },
+  "calib": {
+    "tab": {
+      "settings": "Pointer settings",
+      "polling": "Polling rate",
+      "dpi": "DPI",
+      "accel": "Acceleration",
+      "smooth": "Smoothness",
+      "calc": "cm/360 & mousepad",
+      "profiles": "Mouse profiles"
+    },
+    "explain_title": "About this tool",
+    "h": {
+      "what": "What it does",
+      "why": "Why it is useful",
+      "measures": "What it measures",
+      "how": "How to do it",
+      "results": "How to read the results",
+      "improve": "How to improve",
+      "limits": "Limitations"
+    },
+    "settings": {
+      "what": "Reads the Windows pointer settings and tells you whether \"Enhance pointer precision\" (Windows mouse acceleration) is on.",
+      "why": "With acceleration on, the same hand movement moves the crosshair by different amounts depending on speed, so muscle memory never becomes consistent.",
+      "measures": "The Windows pointer-precision switch and the Windows pointer speed slider (1-20; 10 is the neutral 1:1 position).",
+      "how": "Just open this tab. Press Re-check after you change a setting in Windows.",
+      "results": "Precision OFF and speed 10 is the recommended setup for aiming. Anything else is shown as a warning.",
+      "improve": "Windows Settings > Bluetooth & devices > Mouse > Additional mouse settings > Pointer Options: untick \"Enhance pointer precision\" and set the slider to the 6th notch (speed 10).",
+      "limits": "This reads the Windows setting only. It cannot see acceleration done inside the mouse driver or hardware; use the Acceleration test for that. Some games read raw input and ignore the Windows setting."
+    },
+    "polling": {
+      "what": "Measures how often your mouse reports its position to the computer while you move it.",
+      "why": "A higher polling rate gives smoother, more precise tracking and lower input delay.",
+      "measures": "The time between consecutive movement reports, summarised as a rate in Hz together with the spread (jitter).",
+      "how": "Press Start, then move the mouse in fast, continuous circles for 5 seconds without stopping.",
+      "results": "The estimate is compared with common rates (125, 250, 500, 1000, 2000, 4000, 8000 Hz). Close to your mouse's setting is healthy. Much lower means the mouse, USB port or CPU is limiting it.",
+      "improve": "Plug the mouse directly into a rear USB port (not a hub), close heavy background programs, set the rate in your mouse software, and repeat the test with continuous movement.",
+      "limits": "Timing is taken when this program receives each report, not inside the mouse, so it is an estimate. Very high rates (4000 Hz and above) may read lower than the real value."
+    },
+    "dpi": {
+      "what": "Works out your mouse's real DPI by comparing the counts the mouse reports with a distance you move it.",
+      "why": "The DPI printed on the box is often a few percent off. A correct DPI is needed for accurate cm/360 and for comparing sensitivities across games.",
+      "measures": "The number of mouse counts reported over a known physical distance.",
+      "how": "Place a ruler beside the mouse pad and set the distance (for example 20 cm). Put the mouse at the start mark, press Start, slide it exactly that distance in a straight line, then press Space.",
+      "results": "The measured DPI and the nearest common value are shown. A difference of 1-5% from the advertised value is normal.",
+      "improve": "Use a longer distance (20-30 cm), keep the movement straight, repeat 3 times and compare.",
+      "limits": "Accuracy depends on how exactly you move the mouse. This is not a laboratory measurement; errors of 2-3% are normal."
+    },
+    "accel": {
+      "what": "Checks whether the number of counts your mouse reports changes with how fast you move it over the same distance.",
+      "why": "Any speed-dependent change means the same distance moves the crosshair by different amounts, which makes aim inconsistent.",
+      "measures": "The counts reported for three swipes of equal distance at slow, medium and fast speeds.",
+      "how": "Mark a fixed distance (for example 20 cm). For each of the three swipes press Record, move exactly that distance at the requested speed, then press Space. The fast swipe should be at least 3 times faster than the slow one.",
+      "results": "Similar counts at all speeds means no acceleration was found. Clearly more counts when faster suggests acceleration in the mouse or its driver.",
+      "improve": "Turn off acceleration or \"angle snapping\" in the mouse software, update or remove extra mouse drivers, then test again.",
+      "limits": "Only acceleration visible in the raw mouse data can be found here. Windows pointer acceleration is checked in the Pointer settings tab. Human error in distance can hide or mimic small effects (under about 8%)."
+    },
+    "smooth": {
+      "what": "Records a straight mouse swipe and measures how steady the speed and direction were.",
+      "why": "Steady, straight movement is the foundation of precise aiming.",
+      "measures": "Path straightness, sideways wobble and speed variation.",
+      "how": "Pick a start and an end point about 20 cm apart. Press Record, slide the mouse in a straight line at a steady speed, then press Space.",
+      "results": "Low wobble (as a % of the path length) and low speed variation mean a controlled movement. Use the numbers to compare yourself over time; the labels are rough guides.",
+      "improve": "Try a different grip, pad or arm position and compare, and practise slow straight lines.",
+      "limits": "This measures your hand, pad and mouse together; it cannot tell which one causes unsteadiness. A single swipe is not enough to draw conclusions, so repeat it several times."
+    },
+    "calc": {
+      "what": "Converts your DPI and in-game sensitivity into cm/360 and eDPI, and shows how much turning your mouse pad allows.",
+      "why": "cm/360 is the physical distance you move to turn 360 degrees. It is the fair way to compare sensitivities across games.",
+      "measures": "Nothing is measured; values are calculated with cm/360 = 360 x 2.54 / (DPI x sensitivity x yaw).",
+      "how": "Enter your DPI, sensitivity and game. Enter your pad width to see how many degrees fit. Or enter a target cm/360 to get the sensitivity you need.",
+      "results": "Lower cm/360 means higher sensitivity. Players commonly use somewhere between about 20 and 60 cm/360, depending on the game and style.",
+      "improve": "Make sure your pad has room for the turn you want, and use the sensitivity tests to find what suits you.",
+      "limits": "Uses the standard degrees-per-count value (yaw) of each game. Games with other engines or FOV settings can differ slightly. More games and FOV conversion arrive in the Game Profiles phase."
+    },
+    "start": "Start",
+    "record": "Record",
+    "reset": "Reset",
+    "recheck": "Re-check",
+    "save_hz": "Save polling rate to active mouse profile",
+    "save_dpi": "Save DPI to active mouse profile",
+    "saved_profile": "Saved to the active mouse profile.",
+    "saved_history": "Result saved to history.",
+    "need_profile": "Create a mouse profile first (Mouse profiles tab).",
+    "windows_only": "This tool works on Windows only.",
+    "capture_error": "Could not start mouse capture: {error}",
+    "pointer_on": "Enhance pointer precision is ON. Turn it off for consistent aim.",
+    "pointer_off": "Enhance pointer precision is OFF. Good.",
+    "pointer_speed": "Windows pointer speed: {speed} / 20 (10 = neutral).",
+    "speed_ok": "Pointer speed is neutral.",
+    "speed_warn": "Pointer speed is not 10. Set it to 10 for 1:1 movement.",
+    "pointer_unavailable": "Pointer settings could not be read on this system.",
+    "poll_idle": "Press Start, then move the mouse in fast circles for {sec} seconds.",
+    "poll_running": "Recording... {left} s left. Keep moving the mouse in fast circles.",
+    "poll_insufficient": "Not enough movement data ({n} usable intervals). Move faster and without stopping, then try again.",
+    "poll_result": "Estimated polling rate: {hz} Hz (nearest common rate: {common} Hz)",
+    "poll_detail": "Median interval {median} ms, 95th percentile {p95} ms, jitter {jitter} ms, {n} intervals analysed.",
+    "dpi_distance": "Distance moved (cm)",
+    "dpi_idle": "Set the distance, put the mouse at the start mark and press Start.",
+    "dpi_running": "Recording... slide the mouse {cm} cm in a straight line, then press Space.",
+    "dpi_too_few": "Almost no movement was recorded. Make sure the mouse moved, then try again.",
+    "dpi_result": "Measured DPI: {dpi} (nearest common value: {common}). Counts recorded: {counts}.",
+    "acc_distance": "Swipe distance (cm)",
+    "acc_slow": "slow",
+    "acc_medium": "medium",
+    "acc_fast": "fast",
+    "acc_prompt": "Swipe {n} of 3 ({label}): press Record.",
+    "acc_running": "Recording swipe {n}... move {cm} cm at {label} speed, then press Space.",
+    "acc_too_few": "Almost no movement was recorded for that swipe. Try it again.",
+    "acc_progress": "Swipe {n} recorded: {counts} counts in {dur} s.",
+    "acc_none": "No acceleration detected: counts changed by only {pct}% between the slowest and fastest swipe.",
+    "acc_possible": "Possible acceleration: counts changed by {pct}% between the slowest and fastest swipe. Repeat the test to confirm.",
+    "acc_likely": "Likely acceleration: counts changed by {pct}% between the slowest and fastest swipe.",
+    "acc_inconclusive": "Inconclusive: the fastest swipe was only {ratio}x faster than the slowest. Swipe at clearly different speeds (at least 3x).",
+    "sm_idle": "Pick two points about 20 cm apart. Press Record, slide in a straight line, then press Space.",
+    "sm_running": "Recording... slide the mouse in a straight line at a steady speed, then press Space.",
+    "sm_insufficient": "Not enough movement was recorded. Try a longer, smoother swipe.",
+    "sm_result": "Path {length} counts, straightness {straight}%, sideways wobble {wobble}%, speed variation {cv}%, duration {dur} s.",
+    "sm_very_steady": "Steadiness: very steady (rough guide)",
+    "sm_steady": "Steadiness: steady (rough guide)",
+    "sm_uneven": "Steadiness: uneven (rough guide)",
+    "calc_dpi": "Mouse DPI",
+    "calc_sens": "In-game sensitivity",
+    "calc_game": "Game",
+    "calc_yaw": "Yaw (degrees per count)",
+    "calc_pad": "Mousepad width (cm)",
+    "calc_target": "Target cm/360",
+    "calc_edpi": "eDPI: {edpi}",
+    "calc_cm": "cm/360: {cm}   (inches/360: {inch})",
+    "calc_padres": "Your {width} cm pad allows about {deg} degrees of turning in one swipe (using 80% of its width).",
+    "calc_needed": "Sensitivity needed for {cm} cm/360: {sens}",
+    "game_cs2": "Counter-Strike 2",
+    "game_valorant": "Valorant",
+    "game_apex": "Apex Legends",
+    "game_overwatch2": "Overwatch 2",
+    "game_cod": "Call of Duty",
+    "game_custom": "Custom (enter yaw)",
+    "prof_name": "Profile name",
+    "prof_dpi": "DPI",
+    "prof_hz": "Polling rate (Hz, optional)",
+    "prof_add": "Add mouse profile",
+    "prof_use": "Use selected",
+    "prof_delete": "Delete selected",
+    "prof_active": "(active)",
+    "prof_item": "{name} - {dpi} DPI{hz}",
+    "err_empty": "Please enter a name.",
+    "err_duplicate": "A mouse profile with this name already exists.",
+    "err_dpi": "DPI must be between 50 and 100000.",
+    "err_polling": "Polling rate must be between 1 and 100000.",
+    "prof_added": "Mouse profile \"{name}\" added.",
+    "prof_switched": "Now using \"{name}\".",
+    "prof_deleted": "Profile deleted."
   }
 }
